@@ -1,0 +1,20 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a7ef6843b19eae44fbe669419a59e6f9, type: 3}
+  m_Name: GrimonkData
+  m_EditorClassIdentifier: 
+  Name: Grimonk
+  enemyStats:
+    moveSpeed: 5
+    health: 100
+    hitDamage: 100
+  enemyPrefab: {fileID: 3413804583158405451, guid: 38a7b077cab9a0a43923f80f6055ed78, type: 3}
