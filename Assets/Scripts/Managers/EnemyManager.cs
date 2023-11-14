@@ -5,10 +5,12 @@ using UnityEngine;
 public class EnemyManager : Singleton<EnemyManager>
 {
     public EnemyDataListSO enemyDataList;
+
+    //public int spawnEnemy;
     private void Start()
     {
         SpawnEnemy(enemyDataList.enemies[0]);
-        //SpawnEnemy(enemyDataList.enemies[1]);
+        SpawnEnemy(enemyDataList.enemies[1]);
     }
 
     void SpawnEnemy(EnemyDataSO enemyData)

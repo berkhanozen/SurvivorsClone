@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Grimonk
   enemyStats:
-    moveSpeed: 5
+    moveSpeed: 2
     health: 100
-    hitDamage: 100
+    hitDamage: 200
   enemyPrefab: {fileID: 3413804583158405451, guid: 38a7b077cab9a0a43923f80f6055ed78, type: 3}

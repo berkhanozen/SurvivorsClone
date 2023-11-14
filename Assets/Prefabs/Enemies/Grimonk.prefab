@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 5060011051156228897}
   - component: {fileID: 4815380222619760732}
   - component: {fileID: 3143531484906727852}
+  - component: {fileID: 8926643376131899946}
   - component: {fileID: 1322006402761683348}
   - component: {fileID: -4628623016370525856}
-  - component: {fileID: 8926643376131899946}
   m_Layer: 0
   m_Name: Grimonk
   m_TagString: Enemy
@@ -109,6 +109,23 @@ Animator:
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
   m_WriteDefaultValuesOnDisable: 0
+--- !u!114 &8926643376131899946
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3413804583158405451}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 102844e62405a3f4b9682c3869345c53, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemyStats:
+    moveSpeed: 0
+    health: 0
+    hitDamage: 0
+  player: {fileID: 0}
 --- !u!70 &1322006402761683348
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -171,19 +188,3 @@ Rigidbody2D:
   m_SleepingMode: 1
   m_CollisionDetection: 0
   m_Constraints: 0
---- !u!114 &8926643376131899946
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3413804583158405451}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 102844e62405a3f4b9682c3869345c53, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemyStats:
-    moveSpeed: 0
-    health: 0
-  player: {fileID: 0}

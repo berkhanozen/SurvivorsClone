@@ -14,7 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Slizzard
   enemyStats:
-    moveSpeed: 10
+    moveSpeed: 5
     health: 200
-    hitDamage: 200
+    hitDamage: 300
   enemyPrefab: {fileID: 1411469759877640813, guid: 687f43e69c7ecf440bc59e0ea6bf98d5, type: 3}

@@ -12,13 +12,13 @@ public class Weapon : MonoBehaviour
     {
         if (collision.gameObject.tag == "Enemy")
         {
-            OnHit(collision.gameObject.GetComponent<Enemy>());
+            OnEnemyHit(collision.gameObject.GetComponent<Enemy>());
         }
     }
 
-    public void OnHit(Enemy enemy)
+    public void OnEnemyHit(Enemy enemy)
     {
-        enemy.HitEvent?.Invoke(weaponStats.hitDamage);
+        enemy.EnemyHitEvent?.Invoke(weaponStats.hitDamage);
     }
 
     public virtual void SetData(WeaponDataSO wd)

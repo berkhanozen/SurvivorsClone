@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Enemy : MonoBehaviour
 {
-    public Action<float> HitEvent;
+    public Action<float> EnemyHitEvent;
 
     public EnemyStats enemyStats;
 
@@ -13,14 +13,27 @@ public class Enemy : MonoBehaviour
 
     void Start()
     {
-        HitEvent += OnHit;
+        EnemyHitEvent += OnEnemyHit;
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
 
-    void OnHit(float hitDamage)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        enemyStats.health -= hitDamage;
+        if (collision.gameObject.tag == "Player")
+        {
+            OnPlayerHit(collision.GetComponent<Player>());
+        }
+    }
+
+    void OnEnemyHit(float weaponHitDamage)
+    {
+        enemyStats.health -= weaponHitDamage;
+    }
+
+    void OnPlayerHit(Player player)
+    {
+        player.PlayerHitEvent.Invoke(enemyStats.hitDamage);
     }
 
     public virtual void SetEnemyData(EnemyDataSO enemyData)
