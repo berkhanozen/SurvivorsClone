@@ -17,11 +17,13 @@ public class EnemyStats
     public float moveSpeed;
     public float health;
     public float hitDamage;
+    public float onDeathXP;
 
-    public EnemyStats(float moveSpeed, float health, float hitDamage)
+    public EnemyStats(float moveSpeed, float health, float hitDamage, float onDeathXP)
     {
         this.moveSpeed = moveSpeed;
         this.health = health;
         this.hitDamage = hitDamage;
+        this.onDeathXP = onDeathXP;
     }
 }

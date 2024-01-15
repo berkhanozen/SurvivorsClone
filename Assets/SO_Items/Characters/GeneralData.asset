@@ -12,6 +12,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4967a49112cddb6488955e9a02234ee9, type: 3}
   m_Name: GeneralData
   m_EditorClassIdentifier: 
-  health: 1000
+  health: 150
   moveSpeed: 10
   startingWeapon: {fileID: 11400000, guid: 8ab451e8b51e39a4b9ad802dae9b3d83, type: 2}

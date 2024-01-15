@@ -1,18 +1,55 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
+using UnityEngine.UI;
 
-public class LevelManager : MonoBehaviour
+public class LevelManager : Singleton<LevelManager>
 {
-    // Start is called before the first frame update
-    void Start()
+    public Action<float> ExperienceChangeHandler;
+
+    float xp = 0;
+
+    float totalXp = 0;
+
+    float maxExp = 100;
+
+    int level = 1;
+
+    public Slider levelSlider;
+
+    [SerializeField] TextMeshProUGUI levelText;
+    [SerializeField] TextMeshProUGUI xpText;
+
+    public void UpdateLevelSlider(float enemyStats)
     {
-        
+        ComputeXP(enemyStats);
     }
 
-    // Update is called once per frame
-    void Update()
+    void ComputeXP(float enemyStats)
     {
-        
+        xp += enemyStats;
+        levelSlider.value = (xp / maxExp);
+        xpText.text = xp + " / " + maxExp;
+        totalXp += xp;
+        if (xp >= maxExp)
+        {
+            level++;
+            xp = xp - maxExp;
+            maxExp *= 0.2f;
+            levelSlider.value = (xp / maxExp);
+            xpText.text = xp + " / " + maxExp;
+            levelText.text = "Level " + level;
+            
+        }
+    }
+
+    public int GetLevel
+    {
+        get
+        {
+            return level;
+        }
     }
 }

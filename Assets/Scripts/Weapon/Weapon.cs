@@ -10,7 +10,8 @@ public class Weapon : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        Debug.Log("Girildi");
+        if (collision.gameObject.GetComponent<Enemy>())
         {
             OnEnemyHit(collision.gameObject.GetComponent<Enemy>());
         }

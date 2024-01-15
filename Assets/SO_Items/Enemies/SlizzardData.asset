@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Slizzard
   enemyStats:
     moveSpeed: 5
-    health: 200
-    hitDamage: 300
+    health: 20
+    hitDamage: 15
+    onDeathXP: 20
   enemyPrefab: {fileID: 1411469759877640813, guid: 687f43e69c7ecf440bc59e0ea6bf98d5, type: 3}

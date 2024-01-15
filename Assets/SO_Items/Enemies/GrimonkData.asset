@@ -15,6 +15,7 @@ MonoBehaviour:
   Name: Grimonk
   enemyStats:
     moveSpeed: 2
-    health: 100
-    hitDamage: 200
+    health: 10
+    hitDamage: 10
+    onDeathXP: 50
   enemyPrefab: {fileID: 3413804583158405451, guid: 38a7b077cab9a0a43923f80f6055ed78, type: 3}

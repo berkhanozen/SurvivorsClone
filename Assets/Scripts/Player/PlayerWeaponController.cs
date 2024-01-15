@@ -17,7 +17,6 @@ public class PlayerWeaponController : MonoBehaviour
     private void Start()
     {
         SpawnWeapon(GetComponent<Player>().playerStats.startingWeapon);
-        SpawnWeapon(GetComponent<Player>().playerStats.startingWeapon);
     }
 
     private void OnEnable()

@@ -14,6 +14,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   Name: Whip
   stats:
-    hitDamage: 200
-    cooldown: 3
+    hitDamage: 10
+    cooldown: 1
+    projectileSpeed: 0
   weaponBasePrefab: {fileID: 4887878518684787596, guid: ecbf2c752f1964e4699dd6fdf766a4e7, type: 3}

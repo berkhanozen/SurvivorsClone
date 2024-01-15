@@ -7,13 +7,16 @@ public class Enemy : MonoBehaviour
 {
     public Action<float> EnemyHitEvent;
 
+    public Action EnemyDeathEvent;
+
     public EnemyStats enemyStats;
 
     public GameObject player;
 
     void Start()
     {
-        EnemyHitEvent += OnEnemyHit;
+        EnemyHitEvent += OnEnemyHit; // 2 defa giriyor ve invoke'u weapon.cs de. Buna bak
+        EnemyDeathEvent += OnEnemyDeath;
 
         player = GameObject.FindGameObjectWithTag("Player");
     }
@@ -29,15 +32,26 @@ public class Enemy : MonoBehaviour
     void OnEnemyHit(float weaponHitDamage)
     {
         enemyStats.health -= weaponHitDamage;
+
+        if(enemyStats.health <= 0)
+        {
+            EnemyDeathEvent.Invoke();
+        }
+    }
+
+    void OnEnemyDeath()
+    {
+        LevelManager.Instance.UpdateLevelSlider(enemyStats.onDeathXP);
+        Destroy(gameObject);
     }
 
     void OnPlayerHit(Player player)
     {
-        player.PlayerHitEvent.Invoke(enemyStats.hitDamage);
+        player.PlayerHitEvent?.Invoke(enemyStats.hitDamage);
     }
 
     public virtual void SetEnemyData(EnemyDataSO enemyData)
     {
-        enemyStats = new EnemyStats(enemyData.enemyStats.moveSpeed, enemyData.enemyStats.health, enemyData.enemyStats.hitDamage);
+        enemyStats = new EnemyStats(enemyData.enemyStats.moveSpeed, enemyData.enemyStats.health, enemyData.enemyStats.hitDamage, enemyData.enemyStats.onDeathXP);
     }
 }
