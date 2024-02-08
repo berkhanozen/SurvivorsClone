@@ -11,11 +11,11 @@ public class Enemy : MonoBehaviour
 
     public EnemyStats enemyStats;
 
-    public GameObject player;
+    protected GameObject player;
 
     void Start()
     {
-        EnemyHitEvent += OnEnemyHit; // 2 defa giriyor ve invoke'u weapon.cs de. Buna bak
+        EnemyHitEvent += OnEnemyHit;
         EnemyDeathEvent += OnEnemyDeath;
 
         player = GameObject.FindGameObjectWithTag("Player");

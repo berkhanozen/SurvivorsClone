@@ -8,19 +8,23 @@ using UnityEngine.UI;
 public class LevelManager : Singleton<LevelManager>
 {
     public Action<float> ExperienceChangeHandler;
+    //public Action<int> LevelUpHandler;
 
     float xp = 0;
-
     float totalXp = 0;
-
     float maxExp = 100;
-
     int level = 1;
 
-    public Slider levelSlider;
+    private void Start()
+    {
+        //LevelUpHandler += OnLevelUpHandler;
+        GameManager.Instance.LevelUpEvent += OnLevelUpHandler;
+    }
 
-    [SerializeField] TextMeshProUGUI levelText;
-    [SerializeField] TextMeshProUGUI xpText;
+    private void OnLevelUpHandler()
+    {
+        LevelUp();
+    }
 
     public void UpdateLevelSlider(float enemyStats)
     {
@@ -30,19 +34,23 @@ public class LevelManager : Singleton<LevelManager>
     void ComputeXP(float enemyStats)
     {
         xp += enemyStats;
-        levelSlider.value = (xp / maxExp);
-        xpText.text = xp + " / " + maxExp;
+        UIManager.Instance.levelSlider.value = (xp / maxExp);
+        //xpText.text = xp + " / " + maxExp;
         totalXp += xp;
         if (xp >= maxExp)
         {
-            level++;
-            xp = xp - maxExp;
-            maxExp *= 0.2f;
-            levelSlider.value = (xp / maxExp);
-            xpText.text = xp + " / " + maxExp;
-            levelText.text = "Level " + level;
-            
+            GameManager.Instance.UpdateGameState(GameState.LEVELUP);
         }
+    }
+
+    void LevelUp()
+    {
+        level++;
+        xp = xp - maxExp;
+        maxExp *= 2;
+        UIManager.Instance.levelSlider.value = (xp / maxExp);
+        //xpText.text = xp + " / " + maxExp;
+        UIManager.Instance.levelText.text = "Level " + level;
     }
 
     public int GetLevel

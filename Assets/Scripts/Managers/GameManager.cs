@@ -15,18 +15,27 @@ public class GameManager : Singleton<GameManager>
     Vector3 playerSpawnPoint = new Vector3(0, 0, 0);
 
     GameObject selectedPlayer;
+    int selectedSkill;
 
     public Action BeginEvent;
     public Action StartEvent;
     public Action GameplayEvent;
     public Action PauseEvent;
     public Action FinishEvent;
+    public Action LevelUpEvent;
+    public Action<int> LevelChangeEvent;
 
     public void SelectPlayer(int index)
     {
         selectedPlayer = gameResources.characterList.characters[index];
         InstantiatePlayer(selectedPlayer, playerSpawnPoint);
         UpdateGameState(GameState.STARTED);
+    }
+
+    public void SelectSkill(int index)
+    {
+        selectedSkill = index;
+        UpdateGameState(GameState.LEVELCHANGE);
     }
 
     void InstantiatePlayer(GameObject player, Vector3 spawnPoint)
@@ -39,6 +48,10 @@ public class GameManager : Singleton<GameManager>
     private void Start()
     {
         UpdateGameState(currentState);
+
+        LevelUpEvent += OnLevelUo;
+        GameplayEvent += OnGameplay;
+        PauseEvent += OnPause;
     }
 
     public void UpdateGameState(GameState newState)
@@ -65,6 +78,12 @@ public class GameManager : Singleton<GameManager>
             case GameState.FINISHED:
                 HandleFinish();
                 break;
+            case GameState.LEVELUP:
+                HandleLevelUp();
+                break;
+            case GameState.LEVELCHANGE:
+                HandleLevelChange();
+                break;
         }
     }
 
@@ -87,7 +106,6 @@ public class GameManager : Singleton<GameManager>
     void HandleGameplay()
     {
         GameplayEvent?.Invoke();
-
     }
 
     void HandlePause()
@@ -99,7 +117,34 @@ public class GameManager : Singleton<GameManager>
     {
         FinishEvent?.Invoke();
     }
+
+    void HandleLevelUp()
+    {
+        LevelUpEvent?.Invoke();
+    }
+
+    void HandleLevelChange()
+    {
+        LevelChangeEvent?.Invoke(selectedSkill);
+    }
+    
+
+    void OnPause()
+    {
+        Time.timeScale = 0;
+    }
+
+    void OnLevelUo()
+    {
+        Time.timeScale = 0;
+    }
+
+    void OnGameplay()
+    {
+        Time.timeScale = 1;
+    }
 }
+
 
 public enum GameState
 {
@@ -107,5 +152,7 @@ public enum GameState
     STARTED,
     PLAYING,
     PAUSED,
-    FINISHED
+    FINISHED,
+    LEVELUP,
+    LEVELCHANGE
 }

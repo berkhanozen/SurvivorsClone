@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.Mathematics;
@@ -17,11 +18,19 @@ public class PlayerWeaponController : MonoBehaviour
     private void Start()
     {
         SpawnWeapon(GetComponent<Player>().playerStats.startingWeapon);
+
+        GameManager.Instance.LevelChangeEvent += OnLevelChange;
     }
 
     private void OnEnable()
     {
         GetComponent<PlayerMovement>().MoveEvent += OnMove;
+    }
+
+    private void OnLevelChange(int index)
+    {
+        SpawnWeapon(GameManager.Instance.gameResources.weaponDataList.weapons[index]);
+        GameManager.Instance.UpdateGameState(GameState.PLAYING);
     }
 
     private void OnDisable()

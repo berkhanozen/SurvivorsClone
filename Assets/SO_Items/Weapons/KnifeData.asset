@@ -16,5 +16,5 @@ MonoBehaviour:
   stats:
     hitDamage: 5
     cooldown: 2
-    projectileSpeed: 5
+    projectileSpeed: 20
   weaponBasePrefab: {fileID: 7381486823028389615, guid: bbed92808ad848b41b0f7aec720a45f5, type: 3}
