@@ -5,6 +5,4 @@
 
 ## Screenshots
 
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="screenshots/1.png" alt="Karakter seçim ekranı" height = "450"> &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="screenshots/2.png" alt="Yetenek seçim ekranı" height = "450"> 
-
-&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; <img src="screenshots/3.png" alt="Çift özellik kullanımı ve oyundan görüntü" height = "450">
+<img src="screenshots/1.png" alt="Karakter seçim ekranı" height = "450"> <img src="screenshots/2.png" alt="Yetenek seçim ekranı" height = "450"> <img src="screenshots/3.png" alt="Çift özellik kullanımı ve oyundan görüntü" height = "450">
