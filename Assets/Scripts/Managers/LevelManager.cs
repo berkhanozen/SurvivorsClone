@@ -8,7 +8,6 @@ using UnityEngine.UI;
 public class LevelManager : Singleton<LevelManager>
 {
     public Action<float> ExperienceChangeHandler;
-    //public Action<int> LevelUpHandler;
 
     float xp = 0;
     float totalXp = 0;
@@ -17,7 +16,6 @@ public class LevelManager : Singleton<LevelManager>
 
     private void Start()
     {
-        //LevelUpHandler += OnLevelUpHandler;
         GameManager.Instance.LevelUpEvent += OnLevelUpHandler;
     }
 

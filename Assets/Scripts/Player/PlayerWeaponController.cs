@@ -8,6 +8,7 @@ using UnityEngine.EventSystems;
 public class PlayerWeaponController : MonoBehaviour
 {
     [HideInInspector] public int isRight = 1;
+    [HideInInspector] public int weaponCount = 0;
 
     public List<Transform> weaponPointList;
 
@@ -40,7 +41,6 @@ public class PlayerWeaponController : MonoBehaviour
 
     private void SpawnWeapon(WeaponDataSO weaponData)
     {
-        int weaponCount = 0;
 
         GameObject weaponGameObject = Instantiate(weaponData.weaponBasePrefab);
 

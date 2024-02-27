@@ -29,16 +29,25 @@ public class Weapon : MonoBehaviour
 
     public void ControlDirection(Transform targetTransform, PlayerWeaponController pwc) //ThrowingKnife, Whip
     {
-        
-        if (GetComponentInParent<PlayerWeaponController>().isRight == 1)
+        if(pwc.weaponCount < 1) // burada whipin, sayýsýna göre pozisyon almasýný deðiþtir.
         {
-            targetTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+            if (pwc.isRight == 1)
+            {
+                targetTransform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
+                targetTransform.position = pwc.weaponPointList[0].transform.position;
+            }
+            else if (pwc.isRight == -1)
+            {
+                targetTransform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+                targetTransform.position = pwc.weaponPointList[1].transform.position;
+            }
+        }
+        else
+        {
+            pwc.weapons[0].transform.rotation = Quaternion.Euler(new Vector3(0, 0, 0));
             targetTransform.position = pwc.weaponPointList[0].transform.position;
-        }
-        else if (GetComponentInParent<PlayerWeaponController>().isRight == -1)
-        {
-            targetTransform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
+            pwc.weapons[1].transform.rotation = Quaternion.Euler(new Vector3(0, 180, 0));
             targetTransform.position = pwc.weaponPointList[1].transform.position;
-        }
+        }    
     }
 }

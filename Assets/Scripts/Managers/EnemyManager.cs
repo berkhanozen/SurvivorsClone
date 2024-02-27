@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class EnemyManager : Singleton<EnemyManager>
@@ -8,21 +9,30 @@ public class EnemyManager : Singleton<EnemyManager>
 
     [SerializeField] float enemySpawnCooldown;
 
-    GameObject player;
+    Vector3 playerPos;
 
     private void Start()
     {
-        player = GameObject.FindGameObjectWithTag("Player");
+        GameManager.Instance.GameplayEvent += OnGameplayEvent;
+    }
 
+    private void OnGameplayEvent()
+    {
         StartCoroutine(SpawnEnemies());
+    }
+
+    private void Update()
+    {
+        if(GameManager.Instance.currentState == GameState.PLAYING)
+        {
+            playerPos = GameObject.FindGameObjectWithTag("Player").transform.position;
+        } 
     }
 
     IEnumerator SpawnEnemies()
     {
         while (true)
         {
-            SpawnEnemy(enemyDataList.enemies[0]);
-            SpawnEnemy(enemyDataList.enemies[0]);
             SpawnEnemy(enemyDataList.enemies[0]);
             yield return new WaitForSeconds(enemySpawnCooldown);
         }
@@ -37,32 +47,42 @@ public class EnemyManager : Singleton<EnemyManager>
 
     Vector3 RandomPosition(int inclineX, int declineX, int inclineY, int declineY)
     {
-        float posX;
-        float posY;
 
-        //düþmanlarýn kameranýn içerisinde spawn olmasýný istemiyoruz.
-
-        posX = Random.Range(-declineX, declineX); //Rastgele bir x deðeri al.
-
-        if (posX < inclineX && posX > -inclineX) // Alýnan x deðeri kameranýn içerisindeyse y yi kameranýn dýþýnda olacak þekilde random atýyoruz.
+        try
         {
-            int decidePosY = Random.Range(0, 2); // y sol taraftan mý kameranýn dýþýnda olsun sað taraftan mý
-            
-            if(decidePosY == 0)
+            float posX;
+            float posY;
+
+            //düþmanlarýn kameranýn içerisinde spawn olmasýný istemiyoruz.
+
+            posX = Random.Range(playerPos.x - declineX, playerPos.x + declineX); //Rastgele bir x deðeri al.
+
+            if (posX < inclineX && posX > -inclineX) // Alýnan x deðeri kameranýn içerisindeyse y yi kameranýn dýþýnda olacak þekilde random atýyoruz.
             {
-                posY = Random.Range(player.transform.position.y - declineY, player.transform.position.y - inclineY);
+                int decidePosY = Random.Range(0, 2); // y sol taraftan mý kameranýn dýþýnda olsun sað taraftan mý
+
+                if (decidePosY == 0)
+                {
+                    posY = Random.Range(playerPos.y - declineY, playerPos.y - inclineY);
+                }
+                else
+                {
+                    posY = Random.Range(playerPos.y + inclineY, playerPos.y + declineY);
+                }
             }
             else
             {
-                posY = Random.Range(player.transform.position.y + inclineY, player.transform.position.y + declineY);
+                posY = Random.Range(-declineY, declineY);
             }
-        }
-        else
-        {
-            posY = Random.Range(-declineY, declineY);
-        }
 
-        return new Vector3(posX, posY, 0);
+            return new Vector3(posX, posY, 0);
+        }
+        catch (System.Exception)
+        {
+            Debug.Log("Pozisyon verilemiyor");
+            throw;
+        }
+        
     }
 
 }
