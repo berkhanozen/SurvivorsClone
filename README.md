@@ -3,6 +3,8 @@
  
  The patterns I used: Singleton Pattern, Flyweight Pattern, State Pattern, Prototype Pattern. 
 
+ There is two types of enemy, two types of player character (General and Scientist). General's HP greater than Scientist. Scientist move speed faster than General. General's default weapon is Whip, Scientist's default weapon is knife. 
+
 ## Screenshots
 
-<img src="screenshots/1.png" alt="Karakter seçim ekranı" height = "450"> <img src="screenshots/2.png" alt="Yetenek seçim ekranı" height = "450"> <img src="screenshots/3.png" alt="Çift özellik kullanımı (2x kırbaç)" height = "450"> <img src="screenshots/4.png" alt="Çift özellik kullanımı (kırbaç + bıçak)" height = "450"> <img src="screenshots/5.png" alt="Pause menüsü" height = "450">
+<img src="screenshots/1.png" alt="Character pick screen" height = "450"> <img src="screenshots/2.png" alt="Skill pick screen" height = "450"> <img src="screenshots/3.png" alt="Double skill (2x whip)" height = "450"> <img src="screenshots/4.png" alt="Double skill (whip + knife)" height = "450"> <img src="screenshots/5.png" alt="Pause menu" height = "450">
